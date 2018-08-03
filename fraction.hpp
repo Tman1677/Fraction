@@ -13,12 +13,27 @@ private:
 public:
 	int getNumerator() const;
 	int getDenominator() const;
+	Fraction(); //initializes as 1/1
+	Fraction(int num);
 	Fraction(int num, int den);
 	std::string print() const;
 
 	//unary overloading member operators
-	void operator=(int set_value);
-	void operator=(Fraction set_value);
+	Fraction& operator= (int set_value);
+	Fraction& operator= (Fraction set_value);
+
+	Fraction& operator+=(int to_add);
+	Fraction& operator+=(Fraction to_add);
+
+	Fraction& operator-=(int to_subtract);
+	Fraction& operator-=(Fraction to_subtract);
+
+	Fraction& operator*=(int to_multiply);
+	Fraction& operator*=(Fraction to_multiply);
+
+	Fraction& operator/=(int to_divide);
+	Fraction& operator/=(Fraction to_divide);
+	
 	Fraction operator-() const;
 
 	//overloading casts

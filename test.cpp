@@ -1,6 +1,6 @@
 #include "fraction.hpp"
 
 int main() {
-	Fraction test{1,2};
-	std::cout << static_cast<float>(test) << std::endl;
+	
+	std::cout << "Hello, World!" << std::endl;
 }

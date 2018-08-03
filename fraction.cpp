@@ -7,6 +7,12 @@ Fraction::Fraction(int num, int den) {
 	reduce();
 	fix_negative();
 }
+Fraction::Fraction() {
+
+}
+Fraction::Fraction(int num) {
+	this->num = num;
+}
 
 //member functions
 std::string Fraction::print() const {
@@ -43,13 +49,54 @@ Fraction Fraction::operator-() const {
 	return Fraction{num*-1,den};
 }
 
-void Fraction::operator=(int value) {
+Fraction& Fraction::operator=(int value) {
 	num = value;
 	den = 1;
 }
-void Fraction::operator=(Fraction value) {
+Fraction& Fraction::operator=(Fraction value) {
+	// self-assignment guard
+    if (this == &value)
+        return *this;
 	num = value.num;
 	den = value.den;
+}
+Fraction& Fraction::operator+=(int to_add){
+	num += to_add * den;
+	reduce();
+}
+Fraction& Fraction::operator+=(Fraction to_add){
+	int lcm_temp = Fraction::lcm(den,to_add.den);
+	num = num * (lcm_temp / den) + to_add.num * (lcm_temp / to_add.den);
+	den = lcm_temp;
+	reduce();
+}
+Fraction& Fraction::operator-=(int to_subtract) {
+	num -= to_subtract * den;
+	reduce();
+}
+Fraction& Fraction::operator-=(Fraction to_subtract) {
+	int lcm_temp = Fraction::lcm(den,to_subtract.den);
+	num = num * (lcm_temp / den) - to_subtract.num * (lcm_temp / to_subtract.den);
+	den = lcm_temp;
+	reduce();
+}
+Fraction& Fraction::operator*=(int to_multiply) {
+	num *= to_multiply;
+	reduce();
+}
+Fraction& Fraction::operator*=(Fraction to_multiply) {
+	num *= to_multiply.num;
+	den *= to_multiply.den;
+	reduce();
+}
+Fraction& Fraction::operator/=(int to_divide) {
+	den *= to_divide;
+	reduce();
+}
+Fraction& Fraction::operator/=(Fraction to_divide) {
+	den *= to_divide.num;
+	num *= to_divide.den;
+	reduce();
 }
 
 //overloading casts as members
