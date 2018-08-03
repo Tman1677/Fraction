@@ -32,4 +32,5 @@
 *.app
 
 # Testing file
+timer.cpp
 test.cpp
