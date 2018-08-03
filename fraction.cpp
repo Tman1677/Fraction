@@ -1,17 +1,15 @@
 #include "fraction.hpp"
 
 //constructors
-Fraction::Fraction(int num, int den) {
-	this->num = num;
-	this->den = den;
+Fraction::Fraction(int num_p, int den_p) : num(num_p), den(den_p) {
 	reduce();
 	fix_negative();
 }
-Fraction::Fraction() {
-
+Fraction::Fraction(int num_p) : num(num_p) {
+	
 }
-Fraction::Fraction(int num) {
-	this->num = num;
+Fraction::Fraction() {
+	
 }
 
 //member functions
